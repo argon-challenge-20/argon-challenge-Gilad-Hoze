@@ -38,13 +38,16 @@ class ReposManager {
 	 * @param string repoName The repo's name.
 	 * @param boolean isPrivate Wether the repo is private.
 	 */
-	setVisibility(repoName: string, isPrivate: boolean) {
+	async setVisibility(repoName: string, isPrivate: boolean) {
 		const visibility = isPrivate ? "private" : "public";
-		octokit.request('PATCH /repos/{owner}/{repo}', {
-			  owner: orgName,
-			  repo: repoName,
-			  visibility: visibility
-			}).then((data) => console.log(data));
+    const response = await octokit.request('PATCH /repos/{owner}/{repo}', {
+      headers: {
+        accept: "application/vnd.github.nebula-preview+json",
+        },
+      owner: orgName,
+      repo: repoName,
+      visibility: visibility
+      });
 	}
 }
 module.exports = new ReposManager();
