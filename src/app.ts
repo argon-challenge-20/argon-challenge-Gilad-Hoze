@@ -18,7 +18,10 @@ app.get('/list_repos', (req, res) => {
   });
 });
 
-app.get('/events', (req, res) => {console.log(req)})
+app.get('/events', (req, res) => {
+  console.log(req);
+  res.end("Nice");
+})
 
 app.listen(port, () => {
   createNodeMiddleware(webhooks);
