@@ -1,11 +1,10 @@
 import express from 'express';
 import * as bodyParser from "body-parser"
 
-import { ReposManager } from "./lib/repos-manager.service"
 import { serverPort } from "./consts"
 import { webhookHandler } from "./lib/webhooks"
 
-const reposManager = new ReposManager();
+const reposManager = require('./lib/repos-manager.service');
 const app = express();
 const port = serverPort;
 

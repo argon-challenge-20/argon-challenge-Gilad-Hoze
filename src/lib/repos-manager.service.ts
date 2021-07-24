@@ -8,19 +8,17 @@ const octokit = new Octokit({
   auth: apiToken,
 });
 
-export class ReposManager {
+class ReposManager {
 	public orgRepos;
 
 	/**
 	 * Initializing the repos.
 	 */
 	constructor() {
-		if (!this.orgRepos) {
-			this.listRepos(orgName, orgType).then((repos) => {
+    this.listRepos(orgName, orgType).then((repos) => {
 			this.orgRepos = repos.data.map(repo => new Repo(repo.name, repo.url, repo.private, false));
-		});	
-		}
-	}
+		});
+  }
 
 	/**
 	 * Fetch the repos according to the given pararmeters.
@@ -49,3 +47,4 @@ export class ReposManager {
 			}).then((data) => console.log(data));
 	}
 }
+module.exports = new ReposManager();

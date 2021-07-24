@@ -1,8 +1,7 @@
 var GithubWebHook = require('express-github-webhook');
 import { secret } from "../token"
-import { ReposManager } from "./repos-manager.service"
 
-const reposManager = new ReposManager();
+const reposManager = require('./repos-manager.service');
 export var webhookHandler = GithubWebHook({ path: '/hook', secret: secret });
 
 // Handle the publicized or privatized event and if the event is on a protected repo
