@@ -1,13 +1,15 @@
 import express from 'express';
-import { createNodeMiddleware } from "@octokit/webhooks"
+import * as bodyParser from "body-parser"
 
 import { ReposManager } from "./lib/repos-manager.service"
 import { Repo } from "./lib/repo.model"
 import { orgType, serverPort } from "./consts"
-import { webhooks } from "./lib/webhooks"
+import { webhookHandler } from "./lib/webhooks"
 
 const reposManager = new ReposManager();
 const app = express();
+app.use(bodyParser.json());
+app.use(webhookHandler);
 const port = serverPort;
 
 app.get('/list_repos', (req, res) => {
@@ -18,12 +20,7 @@ app.get('/list_repos', (req, res) => {
   });
 });
 
-app.post("/hook", (req, res) => {
-  console.log(req.body) // Call your action on the request here
-  res.status(200).end() // Responding is important
-})
 
 app.listen(port, () => {
-  createNodeMiddleware(webhooks);
   return console.log(`server is listening on ${port}`);
 });
