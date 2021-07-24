@@ -5,4 +5,6 @@ export const webhooks = new Webhooks({
   secret: secret,
 });
 
-webhooks.onAny((event) => console.log(event));
+webhooks.onAny(({ id, name, payload }) => {
+  console.log(name, "event received");
+});

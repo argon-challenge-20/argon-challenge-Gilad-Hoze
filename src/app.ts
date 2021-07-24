@@ -18,9 +18,9 @@ app.get('/list_repos', (req, res) => {
   });
 });
 
-app.get('/events', (req, res) => {
-  console.log(req);
-  res.end("Nice");
+app.post("/hook", (req, res) => {
+  console.log(req.body) // Call your action on the request here
+  res.status(200).end() // Responding is important
 })
 
 app.listen(port, () => {
