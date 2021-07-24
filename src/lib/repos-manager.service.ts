@@ -1,5 +1,5 @@
 import { Octokit } from "@octokit/rest"
-import { apiToken } from "../consts"
+import { apiToken } from "../token"
 
 const octokit = new Octokit({
   auth: apiToken,
