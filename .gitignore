@@ -118,4 +118,4 @@ dist
 .pnp.*
 
 # Access token
-./src/token.ts
+src/token.ts
