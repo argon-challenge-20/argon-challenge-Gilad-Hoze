@@ -1,5 +1,5 @@
 import { Webhooks } from "@octokit/webhooks"
-import { secret } from "../consts"
+import { secret } from "../token"
 
 export const webhooks = new Webhooks({
   secret: secret,
