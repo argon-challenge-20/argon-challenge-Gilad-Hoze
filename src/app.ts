@@ -12,7 +12,8 @@ const port = serverPort;
 app.use(bodyParser.json());
 app.use(webhookHandler);
 
-// An API for protecting a single repo.
+// An API for protecting a single repo. Expecting to get the repo's name
+// and whether it should be protected or not.
 app.post('/set_protection', (req, res) => {
   const repoName = req.body.repo_name;
   const isProtected = req.body.is_protected;
@@ -37,7 +38,7 @@ app.get('/list_repos', (req, res) => {
 });
 
 
-// Starting the app and fetching all the organziation repos.
+// Starting the app
 app.listen(port, () => {
   return console.log(`server is listening on ${port}`);
 });
